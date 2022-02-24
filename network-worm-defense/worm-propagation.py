@@ -74,7 +74,7 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
         print(f'Number of infected nodes: {len(getInfectedNodes(NetworkGraph))}')
 
     while (len(getInfectedNodes(NetworkGraph)) < totalNodes):
-        # For each infected node, get neighboring node list
+        # Get list of all infected nodes
         infectedNodesList = getInfectedNodes(NetworkGraph)
 
         # Record time period and number of infected nodes
@@ -89,7 +89,6 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
         timePeriods += 1
 
     infectedNodesList = getInfectedNodes(NetworkGraph)
-    # infectedNodesList.sort()
 
     # Record time period and number of infected nodes
     recordData.append((timePeriods, len(infectedNodesList)))
@@ -109,7 +108,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='This application simulates the spread of a worm virus through a network by randomly infecting neighboring nodes')
 
     parser.add_argument('networkCSV', type=pathlib.Path, help='Absolute path to CSV file containing network edge list')
-    parser.add_argument('probability', type=float, nargs='?', help='Optional. Float value representing probability selected node infection. Default: 0.5')
+    parser.add_argument('probability', type=float, nargs='?', help='Optional. Float value representing probability of selected node infection. Default: 0.5')
     parser.add_argument('startNode', nargs='?', help='Optional. Integer value representing node from which network infection will start. Default: 1')
     parser.add_argument('--debug', action='store_true', help='Optional switch. Switch that determines whether to run application in debug mode. Default: False')
 
