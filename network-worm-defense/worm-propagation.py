@@ -17,6 +17,8 @@ def getInfectedNodes(graph):
 def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
     inputFile = os.path.join(dirname, networkCSV)
     totalNodes = 0
+    recordData = []
+
     if (debug):
         print(f'Data directory path: {dataDir}')
         print(f'Network CSV file path: {inputFile}')
@@ -75,6 +77,9 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
         # For each infected node, get neighboring node list
         infectedNodesList = getInfectedNodes(NetworkGraph)
 
+        # Record time period and number of infected nodes
+        recordData.append((timePeriods, len(infectedNodesList)))
+
         for sourceNode in infectedNodesList:
             for neighbor in nx.neighbors(NetworkGraph, sourceNode):
                 # For each neighboring node, randomly infect it based on probability
@@ -84,7 +89,10 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
         timePeriods += 1
 
     infectedNodesList = getInfectedNodes(NetworkGraph)
-    infectedNodesList.sort()
+    # infectedNodesList.sort()
+
+    # Record time period and number of infected nodes
+    recordData.append((timePeriods, len(infectedNodesList)))
 
     if (debug):
         print('Final list of infected nodes:')
@@ -92,6 +100,10 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
 
     print(f'Final count of infected nodes: {len(infectedNodesList)}')
     print(f'timePeriods: {timePeriods}')
+
+    print('Infection over time:')
+    for record in recordData:
+        print(record)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='This application simulates the spread of a worm virus through a network by randomly infecting neighboring nodes')
