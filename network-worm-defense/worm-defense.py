@@ -102,7 +102,7 @@ def wormDefense(networkCSV, infectionProbability = 0.5, infectionStartNode = 1, 
         for sourceNode in infectedNodesList:
             for neighbor in nx.neighbors(NetworkGraph, sourceNode):
                 # For each neighboring node, randomly infect it based on infectionProbability
-                if (not (NetworkGraph.nodes[neighbor]['isInoculated'] == True) and (NetworkGraph.nodes[neighbor]['isInfected'] == False) and (random.random() < infectionProbability)):
+                if ((NetworkGraph.nodes[neighbor]['isInoculated'] == False) and (NetworkGraph.nodes[neighbor]['isInfected'] == False) and (random.random() < infectionProbability)):
                     NetworkGraph.nodes[neighbor]['isInfected'] = True
 
         for sourceNode in inoculatedNodesList:

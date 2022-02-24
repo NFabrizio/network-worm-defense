@@ -24,18 +24,18 @@ def generateGraphs(nodeAmount=30):
     filename = os.path.join(dataDir, f'{filename}.png')
     plt.savefig(filename)
 
-    filePath = os.path.join(dataDir, 'edgelist-erdos-renyi-50.csv')
-    print(filePath)
-    fh = open(filePath, "rb")
-    Er2 = nx.read_edgelist(fh, delimiter=',')
-    fh.close()
-
-    print('Er2.edges()')
-    print(nx.number_of_edges(Er2))
-    print(Er2.edges())
-
-    nx.draw(Er2)
-    plt.savefig("network-erdos-renyi2.png")
+    # filePath = os.path.join(dataDir, 'edgelist-erdos-renyi-50.csv')
+    # print(filePath)
+    # fh = open(filePath, "rb")
+    # Er2 = nx.read_edgelist(fh, delimiter=',')
+    # fh.close()
+    #
+    # print('Er2.edges()')
+    # print(nx.number_of_edges(Er2))
+    # print(Er2.edges())
+    #
+    # nx.draw(Er2)
+    # plt.savefig("network-erdos-renyi2.png")
 
     Ba = nx.barabasi_albert_graph(nodeAmount, 5, randomSeed)
     filename = f'edgelist-barabasi-albert-{nodeAmount}'
