@@ -10,9 +10,10 @@ randomSeed = 15
 
 nxG = nx.Graph()
 
-def generateGraphs(nodeAmount=30):
+def generateGraphs(nodeAmount=30, edgeAmount=100):
+    graphProbability = edgeAmount / (nodeAmount * (nodeAmount - 1) / 2)
     Er = nx.erdos_renyi_graph(nodeAmount, graphProbability, randomSeed)
-    filename = f'edgelist-erdos-renyi-{nodeAmount}'
+    filename = f'edgelist-erdos-renyi-{nodeAmount}n-{edgeAmount}e'
 
     try:
         filePath = os.path.join(dataDir, f'{filename}.csv')
@@ -37,8 +38,9 @@ def generateGraphs(nodeAmount=30):
     # nx.draw(Er2)
     # plt.savefig("network-erdos-renyi2.png")
 
-    Ba = nx.barabasi_albert_graph(nodeAmount, 5, randomSeed)
-    filename = f'edgelist-barabasi-albert-{nodeAmount}'
+    edgeRatio = int(edgeAmount / nodeAmount)
+    Ba = nx.barabasi_albert_graph(nodeAmount, edgeRatio, randomSeed)
+    filename = f'edgelist-barabasi-albert-{nodeAmount}n-{edgeAmount}e'
 
     try:
         filePath = os.path.join(dataDir, f'{filename}.csv')
@@ -50,8 +52,9 @@ def generateGraphs(nodeAmount=30):
     filename = os.path.join(dataDir, f'{filename}.png')
     plt.savefig(filename)
 
-    Ws = nx.watts_strogatz_graph(nodeAmount, 3, graphProbability, randomSeed)
-    filename = f'edgelist-watts-strogatz-{nodeAmount}'
+    edgeRatio = int((2 * edgeAmount) / nodeAmount)
+    Ws = nx.watts_strogatz_graph(nodeAmount, edgeRatio, graphProbability, randomSeed)
+    filename = f'edgelist-watts-strogatz-{nodeAmount}n-{edgeAmount}e'
 
     try:
         filePath = os.path.join(dataDir, f'{filename}.csv')
@@ -64,7 +67,7 @@ def generateGraphs(nodeAmount=30):
     plt.savefig(filename)
 
 if __name__ == '__main__':
-    if (len(sys.argv) == 2):
-        generateGraphs(int(sys.argv[1]))
+    if (len(sys.argv) == 3):
+        generateGraphs(int(sys.argv[1]), int(sys.argv[2]))
     else:
         generateGraphs()
