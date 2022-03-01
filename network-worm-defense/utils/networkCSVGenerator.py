@@ -11,6 +11,10 @@ randomSeed = 15
 nxG = nx.Graph()
 
 def generateGraphs(nodeAmount=30, edgeAmount=100):
+    if not os.path.exists(dataDir):
+        print(f'dataDir does not exist at {dataDir} creating data directory')
+        os.makedirs(dataDir)
+
     graphProbability = edgeAmount / (nodeAmount * (nodeAmount - 1) / 2)
     Er = nx.erdos_renyi_graph(nodeAmount, graphProbability, randomSeed)
     filename = f'edgelist-erdos-renyi-{nodeAmount}n-{edgeAmount}e'
