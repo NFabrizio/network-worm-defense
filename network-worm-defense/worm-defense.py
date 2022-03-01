@@ -32,8 +32,10 @@ def wormDefense(networkCSV, infectionProbability = 0.5, infectionStartNode = 1, 
     NetworkGraph = nx.read_edgelist(fh, delimiter=',')
     fh.close()
 
-    totalNodes = len(NetworkGraph.nodes)
+    totalNodes = nx.number_of_nodes(NetworkGraph)
+    totalEdges = nx.number_of_edges(NetworkGraph)
     print(f'Number of nodes in network graph: {totalNodes}')
+    print(f'Number of edges in network graph: {totalEdges}')
 
     if (debug):
         print(f'Number of edges in network: {nx.number_of_edges(NetworkGraph)}')
@@ -95,6 +97,9 @@ def wormDefense(networkCSV, infectionProbability = 0.5, infectionStartNode = 1, 
         infectedNodesList = getInfectedNodes(NetworkGraph)
         # Get list of all inoculated nodes
         inoculatedNodesList = getInoculatedNodes(NetworkGraph)
+
+        # print(f'# of infected nodes: {len(infectedNodesList)}')
+        # print(f'# of inoculated nodes: {len(inoculatedNodesList)}')
 
         # Record time period, number of infected nodes and  number of inoculated nodes
         recordData.append((timePeriods, len(infectedNodesList), len(inoculatedNodesList)))
