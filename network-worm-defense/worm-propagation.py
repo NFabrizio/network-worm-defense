@@ -29,8 +29,10 @@ def propagateWorm(networkCSV, probability = 0.5, startNode = 1, debug=False):
     NetworkGraph = nx.read_edgelist(fh, delimiter=',')
     fh.close()
 
-    totalNodes = len(NetworkGraph.nodes)
+    totalNodes = nx.number_of_nodes(NetworkGraph)
+    totalEdges = nx.number_of_edges(NetworkGraph)
     print(f'Number of nodes in network graph: {totalNodes}')
+    print(f'Number of edges in network graph: {totalEdges}')
 
     if (debug):
         print(f'Number of edges in network: {nx.number_of_edges(NetworkGraph)}')
