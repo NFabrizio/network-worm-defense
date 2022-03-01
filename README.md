@@ -27,7 +27,7 @@ _Pip version 22.0.3 is required to run this application._
       you want to clone the network-worm-defense repo  
       `cd ~/path/to/your/directory`
    2. In the terminal, run:  
-      `git clone [clone-url-for-your-fork]`
+      `git clone [clone-url-for-your-fork]`  
       The URL should be in the format git@github.com:YourUsername/network-worm-defense.git
 4. Install the required Python packages in your Python environment.
 5. In the terminal on your local environment, navigate to the directory where
@@ -69,8 +69,11 @@ probability           Optional. Float. Probability that the worm will infect an 
 startNode             Optional. Integer. Index of the initial infected node from where the worm starts infecting. Default: 1
 ```
 
-Sample usage:  
-`python3 path/to/network-worm-defense/worm-propagation.py /absolute/path/to/your-network-csv-file.csv 0.1 19`
+Sample usage:
+
+```
+python3 path/to/network-worm-defense/worm-propagation.py /absolute/path/to/your-network-csv-file.csv 0.1 19
+```
 
 ### Worm Defense
 
@@ -99,8 +102,11 @@ inoculationProbability  Optional. Float. Probability that the worm defense will 
 inoculationStartNode    Optional. Integer. Index of the initial inoculated node from where the worm defense starts inoculating. Default: 1
 ```
 
-Sample usage:  
-`python3 path/to/network-worm-defense/worm-defense.py /absolute/path/to/your-network-csv-file.csv 0.1 19 0.1 123`
+Sample usage:
+
+```
+python3 path/to/network-worm-defense/worm-defense.py /absolute/path/to/your-network-csv-file.csv 0.1 19 0.1 123
+```
 
 ### Network CSV Generation
 
@@ -121,8 +127,11 @@ numberOfNodes         Optional. Integer. Number of nodes desired in the network.
 numberOfEdges         Optional. Integer. Number of edges desired in the network. Default: 100
 ```
 
-Sample usage:  
-`python3 path/to/network-worm-defense/utils/networkCSVGenerator.py 500 1000`
+Sample usage:
+
+```
+python3 path/to/network-worm-defense/utils/networkCSVGenerator.py 500 1000
+```
 
 ## Docs
 
